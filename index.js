@@ -11,7 +11,10 @@ module.exports = {
             type:String,
             required:true
         },
-        lang:String,
+        mode: { type: Object, default: () => {
+                  return { path:'ace/mode/text' }; 
+              }
+        },
         theme:String,
         height:true,
         width:true
@@ -38,7 +41,6 @@ module.exports = {
     },
     mounted: function () {
         var vm = this;
-        var lang = this.lang||'text';
         var theme = this.theme||'chrome';
 
         require('brace/ext/emmet');
@@ -49,7 +51,7 @@ module.exports = {
         
         editor.$blockScrolling = Infinity;
         editor.setOption("enableEmmet", true);
-        editor.getSession().setMode('ace/mode/'+lang);
+        editor.getSession().setMode(this.mode);
         editor.setTheme('ace/theme/'+theme);
         editor.setValue(this.value,1);
 
