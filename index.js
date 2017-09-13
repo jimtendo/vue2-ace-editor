@@ -11,9 +11,11 @@ module.exports = {
             type:String,
             required:true
         },
-        mode: { type: Object, default: () => {
-                  return { path:'ace/mode/text' }; 
-              }
+        mode:{
+            type: Object,
+            default: function() {
+               return { path:'ace/mode/text' }
+            }
         },
         theme:String,
         height:true,
