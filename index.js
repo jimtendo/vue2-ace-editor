@@ -64,5 +64,10 @@ module.exports = {
         });
 
 
+    },
+    
+    beforeDestroy: function() {
+        this.editor.destroy();
+        this.editor.container.remove();
     }
 }
